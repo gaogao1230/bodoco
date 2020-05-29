@@ -1,0 +1,12 @@
+<h2>ユーザー情報</h2>
+<div class="row">
+    <div class="col-sm-5">
+        <img class="rounded img-fluid">
+    </div>
+    <div class="col-sm-7">
+        <p>name:<%= @user.name %></p>
+        <p>profile:<%= @user.profile %></p>
+        <p>follower:</p>
+    </div>
+</div>
+<%= render "show_lists", user: @user %>
