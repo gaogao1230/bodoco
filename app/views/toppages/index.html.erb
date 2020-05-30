@@ -1,8 +1,17 @@
-<div class="center jumbotron">
-    <div class="text-center">
-        <h1>
-            ボードゲームの呟きで繋がる！
-        </h1>
-        <%= link_to "新規登録",signup_path, class:"btn btn-lg btn-primary" %>
-     </div>
-</div>
+<% if logged_in? %>
+    <p>
+        ログイン完了ユーザ:<%= current_user.name %>
+    </p>
+<% else %>
+    <div class="center jumbotron">
+        <div class="text-center">
+            <h1>
+                ボードゲームの呟きで繋がる！
+            </h1>
+            <h3>
+                Boardgames connect !!
+            </h3>
+            <%= link_to "新規登録",signup_path, class:"btn btn-lg btn-primary mt-4" %>
+         </div>
+    </div>
+<% end %>
