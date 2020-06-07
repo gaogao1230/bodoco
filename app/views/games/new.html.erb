@@ -1,2 +1,31 @@
-<h1>Games#new</h1>
-<p>Find me in app/views/games/new.html.erb</p>
+<div class="text-center">
+    <h2>ボードゲーム新規登録</h2>
+</div>
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        <%= form_with(model: @game, local: true) do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
+        <div class="form-group">
+            <%= f.label :name, "ボードゲーム名" %>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :play_people, "プレイ人数（何人〜何人？）" %>
+            <%= f.text_field :play_people, class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :play_time, "プレイ時間（分）" %>
+            <%= f.text_field :play_time, class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :image, "画像" %>
+            <%= f.file_field :image, class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :content,"説明" %>
+            <%= f.text_area :content, class:"form-control" %>
+        </div>
+        <%= f.submit "登録",class:"btn btn-primary btn-block mt-4" %>
+        <% end %>
+    </div>
+</div>

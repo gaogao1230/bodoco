@@ -1,19 +1,24 @@
 <% if users.any? %>
  <ul class="list-unstyled">
      <% users.each do |user| %>
-         <li class="media">
-             <img class="mr-2 rounded" src="#" alt="">
-             <div class="media-body">
-                 <div>
-                     <%= user.name %>
-                 </div>
-                 <div>
-                     <p>
-                         <%= link_to "プロフィールを見る", user_path(user) %>
-                     </p>
-                 </div>
-             </div>
-         </li>
+         <div class="card mt-3">
+           <div class="card-body">
+              <li class="media">
+                  <img class="mr-2" width="50" heigth="50"  src="<%= user.image %>" alt="">
+                  <div class="media-body">
+                      <div>
+                          <p>Name:<%= user.name %></p>
+                      </div>
+                      <div>
+                          <p>
+                              Profile:<%= user.profile %>
+                          </p>
+                          <%= link_to "プロフィールを見る", user_path(user) %>
+                      </div>
+                  </div>
+              </li>
+           </div>
+         </div>
      <% end %>
  </ul>
  <%= paginate users %>

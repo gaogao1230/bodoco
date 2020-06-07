@@ -7,7 +7,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(params[:id])
+    @post = Post.find(params[:id])
+    @comment = current_user.comments.build
   end
 
   def new
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content,:image1,:image2)
   end
   
   def correct_user

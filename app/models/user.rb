@@ -10,6 +10,10 @@ class User < ApplicationRecord
     
     has_many :posts
     has_many :games
+    has_many :comments
+    
+    has_many :favorites
+    has_many :likeings, through: :favorites, source: :post
     
     has_many :relationships
     has_many :followings, through: :relationships, source: :follow
@@ -30,4 +34,18 @@ class User < ApplicationRecord
     def following?(other_user)
         self.followings.include?(other_user)
     end
+    
+    def likes(post)
+        self.favorites.find_or_create_by(post_id: post.id)
+    end
+    
+    def unlikes(post)
+        favorite = self.favorites.find_by(post_id: post.id)
+        favorite.destroy if favorite
+    end
+    
+    def likeing?(post)
+        self.likeings.include?(post)
+    end
 end
+

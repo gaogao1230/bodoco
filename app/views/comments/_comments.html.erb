@@ -1,0 +1,17 @@
+<%= form_with(model: @comment, local: true) do |f| %>
+    <div class="form-group">
+        <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        <%= hidden_field_tag :post_id, @post.id %>
+    </div>
+    <%= f.submit "投稿", class: 'btn btn-primary btn-block' %>
+<% end %>
+
+<h2>コメント一覧</h2>
+<% @post.comments.each do |comment| %>
+    <div class="card">
+        <div class="card-body">
+            <p><%= comment.content %></p>
+            <p><%= link_to "削除",post_comment_path,method: :delete,data: {confirm:"削除してもよろしいですか？"},class:"btn btn-primary"%></p>
+        </div>
+    </div>
+<% end %>

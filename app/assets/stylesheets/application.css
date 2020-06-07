@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ 
+ .main-container {
+  background-image: url("/images/top1.jpg");
+  height: 800px;
+  background-size: cover;
+}
+
+.media img {
+ border-radius: 50% ;
+}
+
+.user_show img {
+ border-radius: 50% ;
+}
+
+#post_user_image {
+ border-radius: 50% ;
+}

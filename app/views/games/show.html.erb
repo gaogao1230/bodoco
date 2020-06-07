@@ -1,2 +1,22 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<h2>ボードゲーム詳細</h2>
+<div class="row">
+    <div class="col-sm-5 mt-4">
+        <img src="<%= @game.image %>" width="100">
+    </div>
+    <div class="col-sm-7 mt-4">
+        <h2><%= @game.name %></h2>
+        <p>プレイ人数：<%= @game.play_people %>人</p>
+        <p>プレイ時間：<%= @game.play_time %>分</p>
+    </div>
+</div>
+<h3>説明</h3>
+<div>
+    <%= @game.content %>
+</div>
+
+<p>このゲームについて呟く</p>
+
+<% if current_user == @game.user %>
+    <p><%= link_to "編集",edit_game_path(@game),class:"btn btn-primary btn-sm" %></p>
+    <p><%= link_to "削除",@game,method: :delete,data: {confirm:"削除してよろしいですか？"},class:"btn btn-danger btn-sm" %></p>
+<% end %>
