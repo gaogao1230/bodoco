@@ -1,22 +1,31 @@
-<h2>ボードゲーム詳細</h2>
-<div class="row">
-    <div class="col-sm-5 mt-4">
-        <img src="<%= @game.image %>" width="100">
-    </div>
-    <div class="col-sm-7 mt-4">
-        <h2><%= @game.name %></h2>
-        <p>プレイ人数：<%= @game.play_people %>人</p>
-        <p>プレイ時間：<%= @game.play_time %>分</p>
+<h3>ボードゲーム詳細</h3>
+<p><%= link_to 'このゲームについて呟く', new_post_path(game_id: @game.id),class:"btn btn-primary my-3" %></p>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="offset-md-1 col-md-2 mt-4">
+                <% if @game.image? %> 
+                    <img src="<%= @game.image %>" width="200" height="200">
+                <% else %>
+                    <img src="/assets/fallback/default_game_big.jpg" alt="ゲームーアイコン">
+                <% end %>
+            </div>
+            <div class="offset-md-2 col-md-6 mt-4">
+                <h3>ゲーム名：<%= @game.name %></h3>
+                <p class="mt-3">プレイ人数：<%= @game.play_people %>人</p>
+                <p>プレイ時間：<%= @game.play_time %>分</p>
+                <p>投稿者：<%= link_to @game.user.name,user_path(@game.user) %></p>
+                <div>
+                    <% if current_user == @game.user %>
+                        <%= link_to "編集",edit_game_path(@game),class:"btn btn-primary btn-sm mr-2" %>
+                        <%= link_to "削除",@game,method: :delete,data: {confirm:"削除してよろしいですか？"},class:"btn btn-danger btn-sm" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<h3>説明</h3>
+<h2 class="ml-2 my-3">説明</h2>
 <div>
     <%= @game.content %>
 </div>
-
-<p>このゲームについて呟く</p>
-
-<% if current_user == @game.user %>
-    <p><%= link_to "編集",edit_game_path(@game),class:"btn btn-primary btn-sm" %></p>
-    <p><%= link_to "削除",@game,method: :delete,data: {confirm:"削除してよろしいですか？"},class:"btn btn-danger btn-sm" %></p>
-<% end %>

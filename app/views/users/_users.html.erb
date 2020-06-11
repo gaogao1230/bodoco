@@ -3,9 +3,15 @@
      <% users.each do |user| %>
          <div class="card mt-3">
            <div class="card-body">
-              <li class="media">
-                  <img class="mr-2" width="50" heigth="50"  src="<%= user.image %>" alt="">
-                  <div class="media-body">
+              <li class="media row">
+                  <div class="col-sm-2 offset-sm-1">
+                  <% if user.image? %>
+                    <img src='<%= user.image %>' width="50" heigth="50"　class="img-fluid p-5" alt="ユーザーアイコン">
+                  <% else %>
+                    <img src="/assets/fallback/default.jpg"　width="50" heigth="50" alt="ユーザーアイコン">
+                  <% end %>
+                  </div>
+                  <div class="media-body col-sm-9">
                       <div>
                           <p>Name:<%= user.name %></p>
                       </div>
@@ -22,4 +28,5 @@
      <% end %>
  </ul>
  <%= paginate users %>
+ <div class="mt-4"></div>
 <% end %>

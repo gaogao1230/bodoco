@@ -1,4 +1,3 @@
-<h1 class="my-3">ボードゲーム一覧</h1>
 <ul class="list-unstyled">
     <% games.each do |game| %>
     <div class="card mt-2">
@@ -9,7 +8,11 @@
             <li class="game">
                 <div class="row">
                     <div class="col-sm-3">
-                        <img class="mr-2 rounded" width="100" height="100" src="<%= game.image %>">
+                        <% if game.image? %>
+                            <img class="mr-2 img-fluid" width="100" height="100" src="<%= game.image %>">
+                        <% else %>
+                            <img src="/assets/fallback/default_game.jpg" alt="ユーザーアイコン">
+                        <% end %>
                     </div>
                     <div class="col-sm-9">
                         <p>プレイ人数：<%= game.play_people %>人</p>

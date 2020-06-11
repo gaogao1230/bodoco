@@ -47,5 +47,9 @@ class User < ApplicationRecord
     def likeing?(post)
         self.likeings.include?(post)
     end
+    
+    def feed_posts
+        Post.where(user_id: self.following_ids + [self.id])
+    end
 end
 

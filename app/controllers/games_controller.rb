@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @games = Game.order(id: :desc).page(params[:page]).per(25)
+    @games_all = Game.order(id: :desc).page(params[:page]).per(25)
   end
 
   def show
@@ -45,6 +45,14 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find(params[:id])
+  end
+  
+  def search
+    if params[:name].present?
+      @games = Game.where("name LIKE ?","%#{params[:name]}%")
+    else
+      @games = Game.none
+    end
   end
   
   private

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
+  belongs_to :game
   
   mount_uploader :image1, ::ImageUploader
   mount_uploader :image2, ::ImageUploader

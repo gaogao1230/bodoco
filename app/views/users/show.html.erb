@@ -1,17 +1,4 @@
-<h2>ユーザー情報</h2>
-<div class="row user_show">
-    <div class="col-sm-5">
-        <img class="img-fluid p-5" src="<%= @user.image %>">
-    </div>
-    <div class="col-sm-7">
-        <p>name:<%= @user.name %></p>
-        <p>profile:<%= @user.profile %></p>
-        <%= render "relationships/follow_button", user: @user %>
-        <% if current_user == @user %>
-            <p><%= link_to "編集",edit_user_path,class:"btn btn-primary" %></p>
-        <% end %>
-    </div>
-</div>
+<%= render "users_header" , user: @user %>
 <ul class="nav nav-tabs nav-justified mb-3">
     <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= "active" if current_page?(user_path(@user)) %>">My_tweets<span class="badge badge-secondary"><%= @count_posts %></span></a></li>
     <li class="nav-item"><a href="<%= likeings_user_path(@user) %>" class="nav-link <%= "active" if current_page?(likeings_user_path(@user)) %>">いいね！<span class="badge badge-secondary"><%= @count_likeings %></span></a></li>

@@ -3,7 +3,11 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @posts = Post.order(id: :desc).page(params[:page]).per(25)
+    @posts = Post.all.order(id: :desc).page(params[:page]).per(10)
+  end
+  
+  def followings
+    @posts = current_user.feed_posts.order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -12,7 +16,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if params[:game_id]
+      @post = Post.new(game_id: params[:game_id])
+    else
+      @post = Post.new
+    end
   end
 
   def create
@@ -35,7 +43,7 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:content,:image1,:image2)
+    params.require(:post).permit(:content,:image1,:image2, :game_id)
   end
   
   def correct_user

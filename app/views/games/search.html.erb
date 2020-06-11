@@ -1,0 +1,25 @@
+<div class="row text-center">
+    <div class="col-sm-6 offset-sm-3">
+        <h3>ボードゲーム検索</h3>
+        <div class="form-group my-4">
+            <%= form_with url: search_games_path, method: :get,local: true do |f| %>
+                <%= f.text_field :name, class:"form-control" %>
+                <%= f.submit :search, class:"btn btn-primary btn-block mt-4" %>
+            <% end %>
+        </div>
+        <div class="my-3 text-left">
+            <ul class="list-unstyled my-3">
+                <% @games.each do |game| %>
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <p>ゲーム名：<%= link_to game.name,game %></p>
+                            <p>プレイ人数：<%= game.play_people %>人</p>
+                            <p>プレイ時間：<%= game.play_time %>分</p>
+                            <p>投稿者：<%= link_to game.user.name,user_path(game.user) %></p>
+                        </div>
+                    </div>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>

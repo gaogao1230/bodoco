@@ -1,2 +1,7 @@
-<%= link_to "新規ボードゲーム登録",new_game_path,class:"btn btn-primary my-3" %>
-<%= render "games", games: @games %>
+<div>
+    <%= link_to "新規ボードゲーム登録",new_game_path,class:"btn btn-primary my-3" %>
+</div>
+<div class="mt-3 mb-4">
+   <%= link_to "名前でボードゲーム検索",search_games_path,class:"btn btn-primary" %>
+</div>
+<%= render "games", games: @games_all %>

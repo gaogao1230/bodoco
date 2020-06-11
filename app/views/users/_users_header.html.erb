@@ -1,0 +1,25 @@
+<h3>ユーザー情報</h3>
+<div class="card my-4">
+    <div class="card-header">
+        <h4>Name: <%= @user.name %></h4>
+    </div>
+    <div class="card-body">
+        <div class="row user_show">
+            <div class="col-sm-5">
+                <% if @user.image? %>
+                  <img src='<%= @user.image %>' class="img-fluid p-5" alt="ユーザーアイコン">
+                <% else %>
+                  <image src="/assets/fallback/default_big.jpg" class="img-fluid p-5" alt="ユーザーアイコン" %>
+                <% end %>
+            </div>
+            <div class="col-sm-7">
+                <p>Profile:</p>
+                <p><%= @user.profile %></p>
+                <%= render "relationships/follow_button", user: @user %>
+                <% if current_user == @user %>
+                    <p><%= link_to "編集",edit_user_path,class:"btn btn-primary" %></p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

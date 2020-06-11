@@ -1,20 +1,9 @@
-<h2>ユーザー情報</h2>
-    <div class="row user_show">
-        <div class="col-sm-5">
-            <img class="img-fluid p-5" src="<%= @user.image %>">
-        </div>
-        <div class="col-sm-7">
-            <p>name:<%= @user.name %></p>
-            <p>profile:<%= @user.profile %></p>
-            <%= render "relationships/follow_button", user: @user %>
-            <p><%= link_to "編集",edit_user_path,class:"btn btn-primary" %></p>
-        </div>
-    </div>
-        <ul class="nav nav-tabs nav-justified mb-3">
-            <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= "active" if current_page?(user_path(@user)) %>">My_tweets<span class="badge badge-secondary"><%= @count_posts %></span></a></li>
-            <li class="nav-item"><a href="<%= likeings_user_path(@user) %>" class="nav-link <%= "active" if current_page?(likeings_user_path(@user)) %>">いいね！<span class="badge badge-secondary"><%= @count_likeings %></span></a></li>
-            <li class="nav-item"><a href="<%= games_user_path(@user) %>" class="nav-link <%= "active" if current_page?(games_user_path(@user)) %>">ボードゲーム<span class="badge badge-secondary"><%= @count_games %></span></a></li>
-            <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= "active" if current_page?(followings_user_path(@user)) %>">フォロー<span class="badge badge-secondary"><%= @count_followings %></span></a></li>
-            <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= "active" if current_page?(followers_user_path(@user)) %>">フォロワー<span class="badge badge-secondary"><%= @count_followers %></span></a></li>
-        </ul>
-        <%= render "users", users: @followings %>
+<%= render "users_header" , user: @user %>
+<ul class="nav nav-tabs nav-justified mb-3">
+    <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= "active" if current_page?(user_path(@user)) %>">My_tweets<span class="badge badge-secondary"><%= @count_posts %></span></a></li>
+    <li class="nav-item"><a href="<%= likeings_user_path(@user) %>" class="nav-link <%= "active" if current_page?(likeings_user_path(@user)) %>">いいね！<span class="badge badge-secondary"><%= @count_likeings %></span></a></li>
+    <li class="nav-item"><a href="<%= games_user_path(@user) %>" class="nav-link <%= "active" if current_page?(games_user_path(@user)) %>">ボードゲーム<span class="badge badge-secondary"><%= @count_games %></span></a></li>
+    <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= "active" if current_page?(followings_user_path(@user)) %>">フォロー<span class="badge badge-secondary"><%= @count_followings %></span></a></li>
+    <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= "active" if current_page?(followers_user_path(@user)) %>">フォロワー<span class="badge badge-secondary"><%= @count_followers %></span></a></li>
+</ul>
+<%= render "users", users: @followings %>
